@@ -4,1776 +4,1315 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Washing Machine</title>
+<title>Washing Machine — Robinhood Chain</title>
+
+<meta name="description" content="Washing Machine — 500 machines built for the dirt inside your wallet. Built on Robinhood Chain.">
 
 <style>
 
-/* =========================================================
-   RESET
-========================================================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-  background:
-    radial-gradient(
-      circle at 50% 10%,
-      #4b3b70 0%,
-      #30264d 25%,
-      #1d1730 55%,
-      #0e0b17 100%
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color:#fff;
+    background:#09050f;
+    overflow-x:hidden;
+}
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:-30%;
+    z-index:-5;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(190,150,255,.38), transparent 28%),
+        radial-gradient(circle at 80% 25%, rgba(150,90,255,.30), transparent 30%),
+        radial-gradient(circle at 50% 80%, rgba(220,170,255,.22), transparent 35%),
+        linear-gradient(135deg,#08040d,#160c25,#28133c,#100719);
+
+    animation:bgMove 18s ease-in-out infinite alternate;
+}
+
+@keyframes bgMove{
+    0%{
+        transform:scale(1) translate3d(-2%, -1%, 0);
+    }
+
+    50%{
+        transform:scale(1.12) translate3d(2%, 1%, 0);
+    }
+
+    100%{
+        transform:scale(1.08) translate3d(-1%, 3%, 0);
+    }
+}
+
+/* Moving grid */
+
+.grid{
+    position:fixed;
+    inset:0;
+    z-index:-4;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+
+    background-size:70px 70px;
+
+    mask-image:linear-gradient(
+        to bottom,
+        transparent,
+        black 20%,
+        black 75%,
+        transparent
     );
 
-  color: #ffffff;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  overflow-x: hidden;
+    animation:gridMove 12s linear infinite;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@keyframes gridMove{
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(70px);
+    }
 }
 
+/* Floating lights */
 
-/* =========================================================
-   PREMIUM ANIMATED PURPLE BACKGROUND
-========================================================= */
-
-body::before {
-  content: "";
-
-  position: fixed;
-
-  inset: -30%;
-
-  z-index: -5;
-
-  pointer-events: none;
-
-  background:
-
-    radial-gradient(
-      circle at 15% 20%,
-      rgba(218, 184, 255, 0.48),
-      transparent 24%
-    ),
-
-    radial-gradient(
-      circle at 85% 20%,
-      rgba(157, 130, 255, 0.42),
-      transparent 27%
-    ),
-
-    radial-gradient(
-      circle at 50% 55%,
-      rgba(195, 145, 255, 0.32),
-      transparent 30%
-    ),
-
-    radial-gradient(
-      circle at 20% 85%,
-      rgba(137, 112, 255, 0.30),
-      transparent 25%
-    ),
-
-    radial-gradient(
-      circle at 85% 80%,
-      rgba(224, 169, 255, 0.25),
-      transparent 25%
-    );
-
-  filter: blur(35px);
-
-  animation:
-    purpleFlow 10s ease-in-out infinite alternate;
+.orb{
+    position:fixed;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:-3;
+    filter:blur(35px);
+    opacity:.55;
 }
 
-
-@keyframes purpleFlow {
-
-  0% {
-    transform:
-      translate(-7%, -5%)
-      scale(1);
-  }
-
-  20% {
-    transform:
-      translate(4%, 2%)
-      scale(1.08);
-  }
-
-  40% {
-    transform:
-      translate(-3%, 7%)
-      scale(1.04);
-  }
-
-  60% {
-    transform:
-      translate(7%, -2%)
-      scale(1.12);
-  }
-
-  80% {
-    transform:
-      translate(-2%, 5%)
-      scale(1.06);
-  }
-
-  100% {
-    transform:
-      translate(-6%, -3%)
-      scale(1.02);
-  }
-
+.orb.one{
+    width:280px;
+    height:280px;
+    background:#b66cff;
+    top:8%;
+    left:-80px;
+    animation:orbOne 12s ease-in-out infinite alternate;
 }
 
-
-/* =========================================================
-   MOVING GRID
-========================================================= */
-
-body::after {
-  content: "";
-
-  position: fixed;
-
-  inset: -100px;
-
-  z-index: -4;
-
-  pointer-events: none;
-
-  background-image:
-
-    linear-gradient(
-      rgba(221, 202, 255, 0.09) 1px,
-      transparent 1px
-    ),
-
-    linear-gradient(
-      90deg,
-      rgba(221, 202, 255, 0.09) 1px,
-      transparent 1px
-    );
-
-  background-size:
-    65px 65px;
-
-  animation:
-    gridMove 14s linear infinite;
-
-  opacity: 0.8;
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      black 10%,
-      black 90%,
-      transparent 100%
-    );
+.orb.two{
+    width:240px;
+    height:240px;
+    background:#e1b7ff;
+    right:-70px;
+    top:38%;
+    animation:orbTwo 15s ease-in-out infinite alternate;
 }
 
-
-@keyframes gridMove {
-
-  from {
-    transform:
-      translate(0, 0);
-  }
-
-  to {
-    transform:
-      translate(65px, 65px);
-  }
-
+.orb.three{
+    width:300px;
+    height:300px;
+    background:#7f42ff;
+    bottom:-120px;
+    left:30%;
+    animation:orbThree 14s ease-in-out infinite alternate;
 }
 
-
-/* =========================================================
-   FLOATING LIGHT ORBS
-========================================================= */
-
-.light {
-  position: fixed;
-
-  width: 430px;
-  height: 430px;
-
-  border-radius: 50%;
-
-  pointer-events: none;
-
-  z-index: -3;
-
-  filter: blur(70px);
-
-  opacity: 0.28;
+@keyframes orbOne{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(120px,180px);
+    }
 }
 
-
-.light-one {
-
-  top: -130px;
-  left: -180px;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(219, 179, 255, 0.95),
-      rgba(151, 108, 255, 0.35),
-      transparent 70%
-    );
-
-  animation:
-    floatOne 9s ease-in-out infinite alternate;
+@keyframes orbTwo{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(-120px,120px);
+    }
 }
 
-
-.light-two {
-
-  top: 32%;
-  right: -190px;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(172, 145, 255, 0.90),
-      rgba(107, 83, 235, 0.30),
-      transparent 70%
-    );
-
-  animation:
-    floatTwo 12s ease-in-out infinite alternate;
+@keyframes orbThree{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(80px,-100px);
+    }
 }
 
+/* =========================
+   NAVBAR
+========================= */
 
-.light-three {
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:100;
 
-  bottom: -190px;
-  left: 25%;
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(226, 174, 255, 0.85),
-      rgba(133, 102, 239, 0.25),
-      transparent 70%
-    );
+    background:rgba(8,4,14,.68);
 
-  animation:
-    floatThree 14s ease-in-out infinite alternate;
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
+.nav-inner{
+    max-width:1180px;
+    margin:auto;
 
-@keyframes floatOne {
+    height:76px;
 
-  0% {
-    transform:
-      translate(0, 0)
-      scale(0.8);
-  }
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-  50% {
-    transform:
-      translate(180px, 100px)
-      scale(1.2);
-  }
-
-  100% {
-    transform:
-      translate(60px, 260px)
-      scale(0.95);
-  }
-
+    padding:0 24px;
 }
 
+.nav-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-@keyframes floatTwo {
-
-  0% {
-    transform:
-      translate(0, 0)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translate(-180px, -100px)
-      scale(1.25);
-  }
-
-  100% {
-    transform:
-      translate(-80px, 130px)
-      scale(0.9);
-  }
-
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:1.5px;
 }
 
-
-@keyframes floatThree {
-
-  0% {
-    transform:
-      translate(0, 0)
-      scale(0.85);
-  }
-
-  50% {
-    transform:
-      translate(180px, -130px)
-      scale(1.2);
-  }
-
-  100% {
-    transform:
-      translate(-120px, -50px)
-      scale(1);
-  }
-
+.nav-logo img{
+    width:40px;
+    height:40px;
+    object-fit:contain;
 }
 
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-.nav {
-
-  position: sticky;
-
-  top: 0;
-
-  z-index: 1000;
-
-  background:
-    rgba(8, 6, 13, 0.78);
-
-  backdrop-filter:
-    blur(20px);
-
-  -webkit-backdrop-filter:
-    blur(20px);
-
-  border-bottom:
-    1px solid rgba(255,255,255,0.10);
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
 }
 
+.nav-links a{
+    color:#fff;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
 
-.nav-inner {
+    opacity:.78;
 
-  width: 100%;
-
-  max-width: 1200px;
-
-  margin: auto;
-
-  padding:
-    20px 28px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
+    transition:.25s;
 }
 
-
-.brand {
-
-  font-size: 17px;
-
-  font-weight: 900;
-
-  letter-spacing: 3px;
-
-  white-space: nowrap;
+.nav-links a:hover{
+    opacity:1;
+    color:#dcb8ff;
 }
 
+/* =========================
+   GENERAL
+========================= */
 
-.nav-links {
-
-  display: flex;
-
-  gap: 30px;
+.container{
+    width:min(1120px,92%);
+    margin:auto;
 }
 
-
-.nav-links a {
-
-  color: #b8b2c5;
-
-  font-size: 12px;
-
-  font-weight: bold;
-
-  letter-spacing: 2px;
-
-  transition:
-    color 0.25s ease;
+section{
+    padding:110px 0;
+    position:relative;
 }
 
+.section-title{
+    text-align:center;
 
-.nav-links a:hover {
+    font-size:clamp(30px,5vw,52px);
 
-  color: #ffffff;
+    font-weight:900;
+    letter-spacing:4px;
+
+    margin-bottom:22px;
 }
 
+.section-subtitle{
+    max-width:650px;
+    margin:0 auto 60px;
 
-/* =========================================================
-   CONTAINER
-========================================================= */
+    text-align:center;
 
-.container {
+    color:rgba(255,255,255,.68);
 
-  width: 100%;
-
-  max-width: 1100px;
-
-  margin: auto;
-
-  padding:
-    0 25px;
+    font-size:15px;
+    line-height:1.8;
 }
 
-
-/* =========================================================
+/* =========================
    HERO
-========================================================= */
+========================= */
 
-.hero {
+.hero{
+    min-height:100vh;
 
-  position: relative;
+    padding-top:130px;
 
-  padding:
-    70px 0 80px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-  text-align: center;
+    text-align:center;
 }
 
-
-.hero-banner {
-
-  width: 100%;
-
-  max-width: 1000px;
-
-  height: auto;
-
-  display: block;
-
-  margin:
-    0 auto 55px;
-
-  border-radius: 8px;
-
-  border:
-    1px solid rgba(255,255,255,0.18);
-
-  box-shadow:
-
-    0 30px 100px
-    rgba(0,0,0,0.45),
-
-    0 0 100px
-    rgba(190,150,255,0.18);
+.hero-content{
+    width:min(950px,94%);
 }
 
+.hero-banner{
+    width:100%;
+    max-width:920px;
 
-.hero h1 {
+    display:block;
 
-  font-size:
-    clamp(42px, 8vw, 88px);
+    margin:0 auto 42px;
 
-  line-height:
-    0.95;
+    border-radius:22px;
 
-  font-weight:
-    900;
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.45),
+        0 0 70px rgba(188,125,255,.22);
 
-  letter-spacing:
-    3px;
-
-  margin-bottom:
-    30px;
-
-  text-shadow:
-
-    0 0 50px
-    rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,.12);
 }
 
+.hero h1{
+    font-size:clamp(42px,8vw,88px);
 
-.hero-description {
+    line-height:.95;
 
-  max-width:
-    680px;
+    font-weight:1000;
 
-  margin:
-    auto;
+    letter-spacing:-3px;
 
-  color:
-    #b8b1c3;
-
-  font-size:
-    18px;
-
-  line-height:
-    1.8;
+    margin-bottom:26px;
 }
 
-
-.hero-chain {
-
-  margin-top:
-    28px;
-
-  color:
-    #ffffff;
-
-  font-size:
-    11px;
-
-  font-weight:
-    bold;
-
-  letter-spacing:
-    4px;
+.hero h1 span{
+    color:#dcb8ff;
 }
 
+.hero p{
+    max-width:680px;
 
-/* =========================================================
-   LOGO
-========================================================= */
+    margin:auto;
 
-.logo-area {
+    color:rgba(255,255,255,.72);
 
-  padding:
-    30px 0 110px;
-
-  text-align:
-    center;
+    font-size:17px;
+    line-height:1.8;
 }
 
+.hero-buttons{
+    margin-top:38px;
 
-.logo {
+    display:flex;
+    justify-content:center;
+    gap:14px;
 
-  width:
-    min(350px, 82%);
-
-  height:
-    auto;
-
-  display:
-    block;
-
-  margin:
-    auto;
-
-  filter:
-
-    drop-shadow(
-      0 30px 50px
-      rgba(0,0,0,0.55)
-    )
-
-    drop-shadow(
-      0 0 50px
-      rgba(190,150,255,0.18)
-    );
+    flex-wrap:wrap;
 }
 
+.btn{
+    display:inline-flex;
 
-/* =========================================================
-   SECTIONS
-========================================================= */
+    align-items:center;
+    justify-content:center;
 
-section {
+    min-width:180px;
 
-  position:
-    relative;
+    padding:15px 24px;
 
-  padding:
-    110px 0;
+    border-radius:999px;
 
-  border-top:
-    1px solid
-    rgba(255,255,255,0.08);
+    text-decoration:none;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+
+    transition:.3s;
 }
 
+.btn-primary{
+    color:#12091b;
 
-.section-title {
+    background:#e3c3ff;
 
-  font-size:
-    clamp(34px, 6vw, 60px);
-
-  line-height:
-    1;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    2px;
-
-  margin-bottom:
-    30px;
+    box-shadow:
+        0 10px 35px rgba(202,151,255,.25);
 }
 
-
-.section-text {
-
-  max-width:
-    760px;
-
-  color:
-    #aaa3b6;
-
-  font-size:
-    18px;
-
-  line-height:
-    1.8;
+.btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 45px rgba(202,151,255,.4);
 }
 
+.btn-secondary{
+    color:#fff;
 
-/* =========================================================
-   CARDS
-========================================================= */
+    border:1px solid rgba(255,255,255,.18);
 
-.cards {
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap:
-    18px;
-
-  margin-top:
-    50px;
+    background:rgba(255,255,255,.05);
 }
 
-
-.card {
-
-  position:
-    relative;
-
-  padding:
-    35px;
-
-  min-height:
-    230px;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,0.075),
-      rgba(255,255,255,0.018)
-    );
-
-  border:
-    1px solid
-    rgba(255,255,255,0.12);
-
-  border-radius:
-    8px;
-
-  overflow:
-    hidden;
-
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease;
+.btn-secondary:hover{
+    background:rgba(255,255,255,.10);
+    transform:translateY(-3px);
 }
 
+/* =========================
+   ABOUT
+========================= */
 
-.card::before {
+.about-grid{
+    display:grid;
 
-  content:
-    "";
+    grid-template-columns:repeat(3,1fr);
 
-  position:
-    absolute;
-
-  width:
-    180px;
-
-  height:
-    180px;
-
-  top:
-    -110px;
-
-  right:
-    -90px;
-
-  border-radius:
-    50%;
-
-  background:
-    rgba(201,160,255,0.20);
-
-  filter:
-    blur(30px);
+    gap:20px;
 }
 
+.card{
+    padding:32px;
 
-.card:hover {
+    min-height:220px;
 
-  transform:
-    translateY(-7px);
+    border-radius:22px;
 
-  border-color:
-    rgba(226,205,255,0.28);
+    background:rgba(255,255,255,.055);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(14px);
+
+    box-shadow:0 20px 60px rgba(0,0,0,.18);
+
+    transition:.35s;
 }
 
+.card:hover{
+    transform:translateY(-7px);
 
-.card-number {
+    background:rgba(255,255,255,.08);
 
-  color:
-    #777080;
-
-  font-size:
-    11px;
-
-  font-weight:
-    bold;
-
-  letter-spacing:
-    3px;
-
-  margin-bottom:
-    22px;
+    border-color:rgba(220,184,255,.35);
 }
 
+.card-number{
+    font-size:12px;
 
-.card h3 {
+    font-weight:900;
 
-  font-size:
-    27px;
+    color:#dcb8ff;
 
-  margin-bottom:
-    14px;
+    letter-spacing:2px;
+
+    margin-bottom:20px;
 }
 
+.card h3{
+    font-size:22px;
 
-.card p {
-
-  color:
-    #958e9e;
-
-  font-size:
-    15px;
-
-  line-height:
-    1.7;
+    margin-bottom:15px;
 }
 
+.card p{
+    color:rgba(255,255,255,.63);
 
-/* =========================================================
+    font-size:14px;
+
+    line-height:1.8;
+}
+
+/* =========================
+   WALLET PROBLEM
+========================= */
+
+.problem{
+    background:
+        linear-gradient(
+            180deg,
+            rgba(20,8,32,.15),
+            rgba(12,5,20,.65)
+        );
+}
+
+.problem-box{
+    max-width:850px;
+
+    margin:auto;
+
+    text-align:center;
+
+    padding:55px 35px;
+
+    border-radius:30px;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    background:rgba(255,255,255,.045);
+
+    box-shadow:0 30px 90px rgba(0,0,0,.25);
+}
+
+.problem-box h3{
+    font-size:clamp(26px,4vw,42px);
+
+    line-height:1.15;
+
+    margin-bottom:25px;
+}
+
+.problem-box h3 span{
+    color:#dcb8ff;
+}
+
+.problem-box p{
+    max-width:650px;
+
+    margin:auto;
+
+    color:rgba(255,255,255,.66);
+
+    line-height:1.8;
+
+    font-size:15px;
+}
+
+/* =========================
    UTILITY
-========================================================= */
+========================= */
 
-.utility-box {
+.utility-grid{
+    display:grid;
 
-  position:
-    relative;
+    grid-template-columns:repeat(2,1fr);
 
-  margin-top:
-    50px;
+    gap:22px;
 
-  padding:
-    45px;
+    max-width:900px;
 
-  background:
+    margin:auto;
+}
 
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,0.075),
-      rgba(255,255,255,0.018)
+.utility-card{
+    padding:35px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(15px);
+}
+
+.utility-card h3{
+    font-size:24px;
+
+    margin-bottom:14px;
+}
+
+.utility-card p{
+    color:rgba(255,255,255,.64);
+
+    line-height:1.8;
+
+    font-size:14px;
+}
+
+/* =========================
+   FLOW
+========================= */
+
+.flow{
+    padding-bottom:120px;
+}
+
+.flow-grid{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+    max-width:1000px;
+
+    margin:auto;
+}
+
+.flow-card{
+    position:relative;
+
+    text-align:center;
+
+    padding:40px 25px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    overflow:hidden;
+}
+
+.flow-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #dcb8ff,
+        transparent
     );
-
-  border:
-    1px solid
-    rgba(255,255,255,0.12);
-
-  border-radius:
-    8px;
-
-  overflow:
-    hidden;
 }
 
+.flow-number{
+    font-size:12px;
 
-.utility-box::after {
+    font-weight:900;
 
-  content:
-    "";
+    letter-spacing:2px;
 
-  position:
-    absolute;
+    color:#dcb8ff;
 
-  width:
-    300px;
-
-  height:
-    300px;
-
-  right:
-    -120px;
-
-  top:
-    -160px;
-
-  border-radius:
-    50%;
-
-  background:
-    rgba(200,155,255,0.16);
-
-  filter:
-    blur(50px);
+    margin-bottom:16px;
 }
 
+.flow-card h3{
+    font-size:28px;
 
-.utility-box h3 {
-
-  position:
-    relative;
-
-  z-index:
-    2;
-
-  font-size:
-    30px;
-
-  margin-bottom:
-    20px;
-
-  letter-spacing:
-    2px;
+    margin-bottom:14px;
 }
 
+.flow-card p{
+    color:rgba(255,255,255,.62);
 
-.utility-box p {
+    font-size:14px;
 
-  position:
-    relative;
-
-  z-index:
-    2;
-
-  max-width:
-    760px;
-
-  color:
-    #a49dad;
-
-  line-height:
-    1.8;
-
-  font-size:
-    16px;
+    line-height:1.7;
 }
 
-
-/* =========================================================
-   HOW IT WORKS
-========================================================= */
-
-.flow {
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap:
-    16px;
-
-  margin-top:
-    50px;
-}
-
-
-.flow-item {
-
-  padding:
-    45px 25px;
-
-  text-align:
-    center;
-
-  background:
-    rgba(255,255,255,0.035);
-
-  border:
-    1px solid
-    rgba(255,255,255,0.10);
-
-  border-radius:
-    8px;
-
-  transition:
-    0.3s ease;
-}
-
-
-.flow-item:hover {
-
-  transform:
-    translateY(-6px);
-
-  background:
-    rgba(255,255,255,0.06);
-}
-
-
-.flow-item strong {
-
-  display:
-    block;
-
-  font-size:
-    27px;
-
-  letter-spacing:
-    2px;
-
-  margin-bottom:
-    12px;
-}
-
-
-.flow-item span {
-
-  color:
-    #777080;
-
-  font-size:
-    10px;
-
-  letter-spacing:
-    2px;
-}
-
-
-/* =========================================================
+/* =========================
    SUPPLY
-========================================================= */
+========================= */
 
-.supply {
+#supply{
+    padding:130px 0;
 
-  text-align:
-    center;
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(204,157,255,.22),
+            transparent 42%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(48,20,69,.88),
+            rgba(22,9,34,.94)
+        );
+
+    border-top:1px solid rgba(255,255,255,.10);
+
+    border-bottom:1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04),
+        inset 0 -1px 0 rgba(255,255,255,.04);
 }
 
-
-.supply .section-title {
-
-  margin-bottom:
-    40px;
+.supply{
+    text-align:center;
 }
 
-
-.supply-number {
-
-  font-size:
-    clamp(100px, 20vw, 210px);
-
-  line-height:
-    0.85;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    -5px;
-
-  margin:
-    20px 0 45px;
-
-  text-shadow:
-
-    0 0 80px
-    rgba(220,190,255,0.18);
+.supply .section-title{
+    margin-bottom:10px;
 }
 
+.supply-label{
+    color:rgba(255,255,255,.58);
 
-/* =========================================================
-   OPENSEA BUTTON
-========================================================= */
+    font-size:12px;
 
-.opensea-link {
+    letter-spacing:4px;
 
-  display:
-    inline-block;
+    font-weight:800;
 
-  padding:
-    16px 28px;
-
-  background:
-    rgba(255,255,255,0.04);
-
-  border:
-    1px solid
-    rgba(255,255,255,0.20);
-
-  color:
-    #ffffff;
-
-  font-size:
-    11px;
-
-  font-weight:
-    bold;
-
-  letter-spacing:
-    3px;
-
-  cursor:
-    pointer;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  transition:
-    0.25s ease;
+    margin-bottom:5px;
 }
 
+.supply-number{
+    font-size:clamp(110px,20vw,210px);
 
-.opensea-link:hover {
+    line-height:.9;
 
-  background:
-    #ffffff;
+    font-weight:1000;
 
-  color:
-    #08060d;
+    letter-spacing:-10px;
 
-  border-color:
-    #ffffff;
+    color:#fff;
 
-  box-shadow:
+    text-shadow:
+        0 0 20px rgba(222,190,255,.35),
+        0 0 70px rgba(181,116,255,.25);
 
-    0 10px 50px
-    rgba(220,190,255,0.18);
+    margin:10px 0 30px;
 }
 
+.supply-text{
+    color:rgba(255,255,255,.65);
 
-.soon-message {
+    font-size:15px;
 
-  display:
-    none;
-
-  margin-top:
-    22px;
-
-  color:
-    #b9adca;
-
-  font-size:
-    12px;
-
-  font-weight:
-    bold;
-
-  letter-spacing:
-    5px;
-
-  animation:
-    soonFade 0.35s ease;
+    margin-bottom:30px;
 }
 
+.opensea-link{
+    appearance:none;
 
-@keyframes soonFade {
+    border:none;
 
-  from {
+    cursor:pointer;
 
-    opacity:
-      0;
+    display:inline-flex;
 
-    transform:
-      translateY(8px);
+    align-items:center;
 
-  }
+    justify-content:center;
 
-  to {
+    padding:16px 30px;
 
-    opacity:
-      1;
+    border-radius:999px;
 
-    transform:
-      translateY(0);
+    color:#14091d;
 
-  }
+    background:#e1c0ff;
 
+    font-size:12px;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+
+    box-shadow:
+        0 12px 35px rgba(190,130,255,.25);
+
+    transition:.3s;
 }
 
+.opensea-link:hover{
+    transform:translateY(-3px);
 
-/* =========================================================
+    box-shadow:
+        0 18px 50px rgba(190,130,255,.40);
+}
+
+.soon-message{
+    display:none;
+
+    margin-top:20px;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    letter-spacing:4px;
+
+    color:#e1c0ff;
+
+    animation:soonAppear .25s ease;
+}
+
+@keyframes soonAppear{
+    from{
+        opacity:0;
+        transform:translateY(-5px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   EARN
+========================= */
+
+.earn-box{
+    max-width:850px;
+
+    margin:auto;
+
+    padding:50px 35px;
+
+    border-radius:28px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(208,167,255,.12),
+            rgba(255,255,255,.035)
+        );
+
+    border:1px solid rgba(220,184,255,.20);
+}
+
+.earn-box h3{
+    font-size:clamp(28px,5vw,46px);
+
+    margin-bottom:20px;
+}
+
+.earn-box h3 span{
+    color:#dcb8ff;
+}
+
+.earn-box p{
+    max-width:650px;
+
+    margin:auto;
+
+    color:rgba(255,255,255,.64);
+
+    font-size:14px;
+
+    line-height:1.8;
+}
+
+/* =========================
    CLOSING
-========================================================= */
+========================= */
 
-.closing {
+.closing{
+    text-align:center;
 
-  text-align:
-    center;
-
-  padding:
-    140px 20px;
+    padding:130px 0 90px;
 }
 
+.closing h2{
+    font-size:clamp(38px,7vw,75px);
 
-.closing h2 {
+    line-height:1;
 
-  font-size:
-    clamp(38px, 8vw, 82px);
+    letter-spacing:-3px;
 
-  line-height:
-    0.98;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    2px;
-
-  margin-bottom:
-    35px;
-
-  text-shadow:
-
-    0 0 60px
-    rgba(205,170,255,0.10);
+    margin-bottom:25px;
 }
 
-
-.closing p {
-
-  max-width:
-    650px;
-
-  margin:
-    auto;
-
-  color:
-    #80798a;
-
-  font-size:
-    16px;
-
-  line-height:
-    1.8;
+.closing h2 span{
+    color:#dcb8ff;
 }
 
+.closing p{
+    max-width:650px;
 
-/* =========================================================
+    margin:auto;
+
+    color:rgba(255,255,255,.62);
+
+    line-height:1.8;
+}
+
+/* =========================
    X
-========================================================= */
+========================= */
 
-.social {
+.social{
+    padding:40px 0;
 
-  padding:
-    50px 20px;
-
-  text-align:
-    center;
-
-  border-top:
-    1px solid
-    rgba(255,255,255,0.08);
+    text-align:center;
 }
 
+.social a{
+    color:#fff;
 
-.social a {
+    text-decoration:none;
 
-  display:
-    inline-block;
+    font-size:13px;
 
-  color:
-    #9991a3;
+    font-weight:900;
 
-  font-size:
-    11px;
+    letter-spacing:2px;
 
-  font-weight:
-    bold;
+    opacity:.75;
 
-  letter-spacing:
-    3px;
-
-  transition:
-    0.25s ease;
+    transition:.25s;
 }
 
+.social a:hover{
+    opacity:1;
 
-.social a:hover {
-
-  color:
-    #ffffff;
+    color:#dcb8ff;
 }
 
+/* =========================
+   DISCLAIMER
+========================= */
 
-/* =========================================================
+.disclaimer{
+    max-width:900px;
+
+    margin:0 auto;
+
+    padding:30px 24px 70px;
+
+    text-align:center;
+}
+
+.disclaimer p{
+    color:rgba(255,255,255,.38);
+
+    font-size:11px;
+
+    line-height:1.8;
+}
+
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
-footer {
+footer{
+    padding:25px;
 
-  padding:
-    35px 20px 50px;
+    text-align:center;
 
-  text-align:
-    center;
+    border-top:1px solid rgba(255,255,255,.07);
 
-  border-top:
-    1px solid
-    rgba(255,255,255,0.06);
+    background:rgba(5,2,9,.45);
 }
 
+footer p{
+    color:rgba(255,255,255,.35);
 
-.watermark {
+    font-size:10px;
 
-  color:
-    #57505f;
-
-  font-size:
-    10px;
-
-  letter-spacing:
-    3px;
+    letter-spacing:2px;
 }
 
-
-.disclaimer {
-
-  max-width:
-    720px;
-
-  margin:
-    18px auto 0;
-
-  color:
-    #403a46;
-
-  font-size:
-    9px;
-
-  line-height:
-    1.7;
-}
-
-
-/* =========================================================
+/* =========================
    MOBILE
-========================================================= */
+========================= */
 
-@media (max-width: 700px) {
+@media(max-width:800px){
 
-  .nav-inner {
+    .nav-inner{
+        height:68px;
+        padding:0 15px;
+    }
 
-    padding:
-      17px 15px;
-  }
+    .nav-logo{
+        font-size:11px;
+        gap:8px;
+    }
 
+    .nav-logo img{
+        width:34px;
+        height:34px;
+    }
 
-  .brand {
+    .nav-links{
+        gap:12px;
+    }
 
-    font-size:
-      12px;
+    .nav-links a{
+        font-size:9px;
+    }
 
-    letter-spacing:
-      2px;
-  }
+    section{
+        padding:85px 0;
+    }
 
+    .hero{
+        padding-top:110px;
+    }
 
-  .nav-links {
+    .hero-banner{
+        border-radius:15px;
 
-    gap:
-      13px;
-  }
+        margin-bottom:32px;
+    }
 
+    .hero h1{
+        font-size:48px;
 
-  .nav-links a {
+        letter-spacing:-2px;
+    }
 
-    font-size:
-      9px;
+    .hero p{
+        font-size:14px;
+    }
 
-    letter-spacing:
-      1px;
-  }
+    .about-grid{
+        grid-template-columns:1fr;
+    }
 
+    .utility-grid{
+        grid-template-columns:1fr;
+    }
 
-  .container {
+    .flow-grid{
+        grid-template-columns:1fr;
+    }
 
-    padding:
-      0 18px;
-  }
+    .problem-box{
+        padding:38px 22px;
+    }
 
+    .supply-number{
+        font-size:130px;
 
-  .hero {
+        letter-spacing:-7px;
+    }
 
-    padding:
-      35px 0 65px;
-  }
+    .supply-text{
+        font-size:13px;
+    }
 
-
-  .hero-banner {
-
-    margin-bottom:
-      38px;
-
-    border-radius:
-      5px;
-  }
-
-
-  .hero h1 {
-
-    font-size:
-      43px;
-
-    letter-spacing:
-      1px;
-  }
-
-
-  .hero-description {
-
-    font-size:
-      15px;
-
-    line-height:
-      1.7;
-  }
-
-
-  .hero-chain {
-
-    font-size:
-      9px;
-
-    letter-spacing:
-      3px;
-  }
-
-
-  .logo-area {
-
-    padding:
-      10px 0 80px;
-  }
-
-
-  section {
-
-    padding:
-      75px 0;
-  }
-
-
-  .section-title {
-
-    font-size:
-      36px;
-  }
-
-
-  .section-text {
-
-    font-size:
-      15px;
-
-    line-height:
-      1.75;
-  }
-
-
-  .cards {
-
-    grid-template-columns:
-      1fr;
-
-    gap:
-      14px;
-
-    margin-top:
-      35px;
-  }
-
-
-  .card {
-
-    min-height:
-      auto;
-
-    padding:
-      28px;
-  }
-
-
-  .utility-box {
-
-    padding:
-      28px;
-
-    margin-top:
-      35px;
-  }
-
-
-  .utility-box h3 {
-
-    font-size:
-      23px;
-  }
-
-
-  .flow {
-
-    grid-template-columns:
-      1fr;
-
-    gap:
-      12px;
-
-    margin-top:
-      35px;
-  }
-
-
-  .flow-item {
-
-    padding:
-      30px 20px;
-  }
-
-
-  .supply-number {
-
-    font-size:
-      115px;
-
-    margin:
-      25px 0 40px;
-  }
-
-
-  .closing {
-
-    padding:
-      90px 20px;
-  }
-
-
-  .closing h2 {
-
-    font-size:
-      43px;
-  }
-
-
-  .light {
-
-    width:
-      300px;
-
-    height:
-      300px;
-
-    filter:
-      blur(60px);
-  }
+    .closing{
+        padding-top:90px;
+    }
 
 }
 
+@media(max-width:480px){
 
-/* =========================================================
-   REDUCE MOTION
-========================================================= */
+    .nav-links{
+        gap:8px;
+    }
 
-@media (prefers-reduced-motion: reduce) {
+    .nav-links a:nth-child(3){
+        display:none;
+    }
 
-  *,
-  *::before,
-  *::after {
+    .hero h1{
+        font-size:42px;
+    }
 
-    animation:
-      none !important;
+    .btn{
+        width:100%;
+    }
 
-    transition:
-      none !important;
-
-    scroll-behavior:
-      auto !important;
-  }
+    .supply-number{
+        font-size:105px;
+    }
 
 }
 
 </style>
 </head>
 
-
 <body>
 
+<!-- BACKGROUND -->
 
-<!-- ANIMATED LIGHTS -->
+<div class="grid"></div>
 
-<div class="light light-one"></div>
-
-<div class="light light-two"></div>
-
-<div class="light light-three"></div>
+<div class="orb one"></div>
+<div class="orb two"></div>
+<div class="orb three"></div>
 
 
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
+<!-- NAVBAR -->
 
-<nav class="nav">
+<nav>
 
-  <div class="nav-inner">
+    <div class="nav-inner">
 
-    <div class="brand">
-      WASHING MACHINE
+        <a href="#top" class="nav-logo" style="text-decoration:none;color:white;">
+
+            <img src="./assets/logo1.png" alt="Washing Machine Logo">
+
+            <span>WASHING MACHINE</span>
+
+        </a>
+
+        <div class="nav-links">
+
+            <a href="#about">ABOUT</a>
+
+            <a href="#utility">UTILITY</a>
+
+            <a href="#flow">HOW IT WORKS</a>
+
+            <a href="#supply">SUPPLY</a>
+
+        </div>
+
     </div>
-
-    <div class="nav-links">
-
-      <a href="#about">
-        ABOUT
-      </a>
-
-      <a href="#utility">
-        UTILITY
-      </a>
-
-      <a href="#supply">
-        SUPPLY
-      </a>
-
-    </div>
-
-  </div>
 
 </nav>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<!-- HERO -->
 
-<main>
+<section class="hero" id="top">
 
+    <div class="hero-content">
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+        <img
+            src="./assets/banner1.png"
+            alt="Washing Machine"
+            class="hero-banner"
+        >
 
-<div class="hero">
-
-  <div class="container">
-
-    <img
-      class="hero-banner"
-      src="./assets/banner1.png"
-      alt="Washing Machine Banner"
-    >
-
-
-    <h1>
-      YOUR WALLET<br>
-      GETS DIRTY.
-    </h1>
-
-
-    <p class="hero-description">
-
-      Crypto wallets collect dust, tiny balances and
-      forgotten tokens. Washing Machine is built around
-      the idea of cleaning them up.
-
-    </p>
-
-
-    <p class="hero-chain">
-
-      BUILT ON ROBINHOOD CHAIN
-
-    </p>
-
-  </div>
-
-</div>
-
-
-<!-- =====================================================
-     LOGO
-===================================================== -->
-
-<div class="logo-area">
-
-  <img
-    class="logo"
-    src="./assets/logo1.png"
-    alt="Washing Machine Logo"
-  >
-
-</div>
-
-
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section id="about">
-
-  <div class="container">
-
-
-    <h2 class="section-title">
-      THE MACHINE
-    </h2>
-
-
-    <p class="section-text">
-
-      Washing Machine is a limited NFT collection
-      designed around a simple crypto problem:
-      wallets can become cluttered with dust coins,
-      tiny balances and unwanted assets.
-
-    </p>
-
-
-    <div class="cards">
-
-
-      <div class="card">
-
-        <div class="card-number">
-          01
-        </div>
-
-        <h3>
-          HOLD
-        </h3>
+        <h1>
+            YOUR WALLET<br>
+            GETS <span>DIRTY.</span>
+        </h1>
 
         <p>
-
-          Hold a Washing Machine NFT and become
-          part of the ecosystem.
-
+            Dust coins. Tiny balances. Forgotten tokens.
+            Your wallet collects them all.
+            Washing Machine is built to change that.
         </p>
 
-      </div>
+        <div class="hero-buttons">
 
+            <a href="#utility" class="btn btn-primary">
+                EXPLORE THE MACHINE
+            </a>
 
-      <div class="card">
+            <a href="#supply" class="btn btn-secondary">
+                VIEW SUPPLY
+            </a>
 
-        <div class="card-number">
-          02
         </div>
-
-        <h3>
-          WASH
-        </h3>
-
-        <p>
-
-          The planned Washing mechanism is designed
-          to process eligible dust and unwanted balances.
-
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-number">
-          03
-        </div>
-
-        <h3>
-          EARN
-        </h3>
-
-        <p>
-
-          Eligible holders could potentially receive
-          ecosystem rewards such as $WASH and $USDG.
-
-        </p>
-
-      </div>
-
 
     </div>
-
-  </div>
 
 </section>
 
 
-<!-- =====================================================
-     UTILITY
-===================================================== -->
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            ABOUT
+        </h2>
+
+        <p class="section-subtitle">
+            Washing Machine is a limited NFT collection built on
+            Robinhood Chain, designed around one simple idea:
+            your wallet should not stay dirty forever.
+        </p>
+
+
+        <div class="about-grid">
+
+            <div class="card">
+
+                <div class="card-number">
+                    01 / COLLECTION
+                </div>
+
+                <h3>
+                    Only 500
+                </h3>
+
+                <p>
+                    Only 500 Machines will ever exist.
+                    Not 5,000. Not 10,000.
+                    Just 500.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-number">
+                    02 / CHAIN
+                </div>
+
+                <h3>
+                    Robinhood Chain
+                </h3>
+
+                <p>
+                    Built around the emerging ecosystem
+                    of Robinhood Chain and its growing
+                    on-chain economy.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-number">
+                    03 / PURPOSE
+                </div>
+
+                <h3>
+                    More Than A JPEG
+                </h3>
+
+                <p>
+                    The Machine is designed to become
+                    part of a future washing mechanism
+                    for eligible wallet dust and unwanted balances.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WALLET PROBLEM -->
+
+<section class="problem">
+
+    <div class="container">
+
+        <h2 class="section-title">
+            THE PROBLEM
+        </h2>
+
+        <p class="section-subtitle">
+            Crypto wallets can become messy very quickly.
+        </p>
+
+
+        <div class="problem-box">
+
+            <h3>
+                Your wallet collects
+                <span>everything.</span>
+            </h3>
+
+            <p>
+                Small token balances, dust coins, forgotten assets
+                and random leftovers can sit inside your wallet
+                for months or years.
+                Washing Machine is built around the idea of
+                turning that mess into something useful.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- UTILITY -->
 
 <section id="utility">
 
-  <div class="container">
+    <div class="container">
+
+        <h2 class="section-title">
+            UTILITY
+        </h2>
+
+        <p class="section-subtitle">
+            The Machine is designed with a future utility layer
+            beyond simply owning an NFT.
+        </p>
 
 
-    <h2 class="section-title">
-      UTILITY
-    </h2>
+        <div class="utility-grid">
+
+            <div class="utility-card">
+
+                <h3>
+                    Washing Mechanism
+                </h3>
+
+                <p>
+                    Eligible wallet dust and unwanted token balances
+                    could be processed through the planned
+                    Washing mechanism.
+                </p>
+
+            </div>
 
 
-    <p class="section-text">
+            <div class="utility-card">
 
-      The Machine is designed to be more than a
-      collectible. Its planned utility revolves around
-      turning wallet dust into something potentially useful.
+                <h3>
+                    Holder Utility
+                </h3>
 
-    </p>
+                <p>
+                    Holding a Machine is intended to provide access
+                    to future ecosystem features connected to
+                    the Washing system.
+                </p>
 
-
-    <div class="utility-box">
-
-
-      <h3>
-        HOLD → WASH → EARN
-      </h3>
+            </div>
 
 
-      <p>
+            <div class="utility-card">
 
-        The ecosystem is planned around a Washing
-        mechanism where eligible dust or unwanted token
-        balances could be processed. Depending on the
-        final technical implementation, hol
+                <h3>
+                    $WASH
+                </h3>
+
+                <p>
+                    The ecosystem is planned around a native
+                    $WASH token that could be used within
+                    the Washing Machine system.
+                </p>
+
+            </div>
+
+
+            <div class="utility-card">
+
+                <h3>
+                    Potential $USDG
+                </h3>
+
+             
