@@ -1,612 +1,1415 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Washing Machine</title>
+<title>Washing Machine</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
 
-    html {
-      scroll-behavior: smooth;
-    }
+/* =========================================================
+   RESET
+========================================================= */
 
-    body {
-      background: #080808;
-      color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    /* NAVBAR */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      width: 100%;
-      background: #080808;
-      border-bottom: 1px solid #222;
-    }
+body {
+  background: #050505;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
 
-    .nav-inner {
-      max-width: 1100px;
-      margin: auto;
-      padding: 18px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-    .brand {
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
 
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
+/* =========================================================
+   ANIMATED BACKGROUND
+========================================================= */
 
-    .nav-links a {
-      color: #aaa;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  inset: -30%;
+  z-index: -5;
 
-    .nav-links a:hover {
-      color: #fff;
-    }
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(170, 130, 255, 0.14),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 80% 30%,
+      rgba(100, 220, 255, 0.10),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 80%,
+      rgba(190, 120, 255, 0.10),
+      transparent 30%
+    );
 
-    /* MAIN */
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      margin: auto;
-      padding: 0 24px;
-    }
+  filter: blur(30px);
 
-    /* HERO */
-    .hero {
-      padding: 50px 0 80px;
-      text-align: center;
-    }
+  animation: backgroundMove 18s ease-in-out infinite alternate;
+}
 
-    .hero-banner {
-      width: 100%;
-      max-width: 1000px;
-      display: block;
-      margin: 0 auto 45px;
-      border-radius: 4px;
-    }
+@keyframes backgroundMove {
+  0% {
+    transform: translate3d(-3%, -2%, 0) scale(1);
+  }
 
-    .hero h1 {
-      font-size: clamp(38px, 8vw, 78px);
-      line-height: 1;
-      font-weight: 900;
-      letter-spacing: 3px;
-      margin-bottom: 22px;
-    }
+  50% {
+    transform: translate3d(3%, 2%, 0) scale(1.08);
+  }
 
-    .hero p {
-      max-width: 650px;
-      margin: auto;
-      color: #aaa;
-      font-size: 18px;
-    }
+  100% {
+    transform: translate3d(-2%, 4%, 0) scale(1.02);
+  }
+}
 
-    .hero-small {
-      margin-top: 22px !important;
-      color: #ffffff !important;
-      font-size: 14px !important;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
 
-    /* LOGO */
-    .logo-area {
-      padding: 30px 0 90px;
-      text-align: center;
-    }
+/* GRID */
 
-    .logo {
-      width: min(360px, 85%);
-      height: auto;
-      display: block;
-      margin: auto;
-    }
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+  pointer-events: none;
 
-    /* SECTIONS */
-    section {
-      padding: 90px 0;
-      border-top: 1px solid #1c1c1c;
-    }
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px
+    );
 
-    .section-title {
-      font-size: clamp(30px, 5vw, 52px);
-      font-weight: 900;
-      margin-bottom: 25px;
-      letter-spacing: 1px;
-    }
+  background-size: 70px 70px;
 
-    .section-text {
-      max-width: 760px;
-      color: #aaa;
-      font-size: 18px;
-    }
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
+}
 
-    /* CARDS */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 40px;
-    }
 
-    .card {
-      background: #111;
-      border: 1px solid #262626;
-      padding: 30px;
-      border-radius: 6px;
-    }
+/* FLOATING LIGHTS */
 
-    .card-number {
-      font-size: 13px;
-      color: #777;
-      font-weight: bold;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
-    }
+.light {
+  position: fixed;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -3;
 
-    .card h3 {
-      font-size: 24px;
-      margin-bottom: 12px;
-    }
+  filter: blur(100px);
+  opacity: 0.08;
+}
 
-    .card p {
-      color: #999;
-      font-size: 15px;
-    }
+.light-one {
+  top: 10%;
+  left: -150px;
+  background: #b993ff;
 
-    /* UTILITY */
-    .utility-box {
-      margin-top: 40px;
-      padding: 40px;
-      background: #101010;
-      border: 1px solid #292929;
-      border-radius: 6px;
-    }
+  animation: floatOne 15s ease-in-out infinite;
+}
 
-    .utility-box h3 {
-      font-size: 28px;
-      margin-bottom: 15px;
-    }
+.light-two {
+  top: 50%;
+  right: -150px;
+  background: #76d9ff;
 
-    .utility-box p {
-      color: #aaa;
-      max-width: 760px;
-    }
+  animation: floatTwo 18s ease-in-out infinite;
+}
 
-    /* FLOW */
-    .flow {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-top: 40px;
-    }
+.light-three {
+  bottom: -150px;
+  left: 35%;
+  background: #d58cff;
 
-    .flow-item {
-      border: 1px solid #292929;
-      padding: 35px 20px;
-      text-align: center;
-      background: #0e0e0e;
-    }
+  animation: floatThree 20s ease-in-out infinite;
+}
 
-    .flow-item strong {
-      display: block;
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
+@keyframes floatOne {
+  0%,100% {
+    transform: translate(0,0);
+  }
 
-    .flow-item span {
-      color: #777;
-      font-size: 13px;
-      letter-spacing: 1px;
-    }
+  50% {
+    transform: translate(100px,80px);
+  }
+}
 
-    /* SUPPLY */
-    .supply {
-      text-align: center;
-    }
+@keyframes floatTwo {
+  0%,100% {
+    transform: translate(0,0);
+  }
 
-    .supply-number {
-      font-size: clamp(80px, 18vw, 180px);
-      font-weight: 900;
-      line-height: 1;
-      margin: 30px 0;
-    }
+  50% {
+    transform: translate(-100px,-80px);
+  }
+}
 
-    .supply-label {
-      color: #aaa;
-      font-size: 18px;
-      letter-spacing: 3px;
-      font-weight: bold;
-    }
+@keyframes floatThree {
+  0%,100% {
+    transform: translate(0,0);
+  }
 
-    /* CTA */
-    .closing {
-      text-align: center;
-      padding: 120px 20px;
-    }
+  50% {
+    transform: translate(80px,-100px);
+  }
+}
 
-    .closing h2 {
-      font-size: clamp(32px, 7vw, 65px);
-      line-height: 1.05;
-      margin-bottom: 25px;
-    }
 
-    .closing p {
-      color: #888;
-      max-width: 600px;
-      margin: auto;
-    }
+/* =========================================================
+   NAVBAR
+========================================================= */
 
-    /* X */
-    .social {
-      text-align: center;
-      padding: 45px 20px;
-      border-top: 1px solid #1c1c1c;
-    }
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 
-    .social a {
-      color: #aaa;
-      font-weight: bold;
-      letter-spacing: 2px;
-      font-size: 14px;
-    }
+  background: rgba(5,5,5,0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 
-    .social a:hover {
-      color: #fff;
-    }
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 30px 20px 45px;
-      border-top: 1px solid #151515;
-    }
+.nav-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
 
-    .watermark {
-      color: #555;
-      font-size: 11px;
-      letter-spacing: 2px;
-    }
+  padding: 20px 28px;
 
-    .disclaimer {
-      max-width: 700px;
-      margin: 15px auto 0;
-      color: #444;
-      font-size: 10px;
-      line-height: 1.6;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    /* MOBILE */
-    @media (max-width: 700px) {
+.brand {
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
 
-      .nav-inner {
-        padding: 16px;
-      }
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
 
-      .brand {
-        font-size: 14px;
-      }
+.nav-links a {
+  color: #999;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
 
-      .nav-links {
-        gap: 12px;
-        font-size: 10px;
-      }
+  transition: 0.25s ease;
+}
 
-      .container {
-        padding: 0 18px;
-      }
+.nav-links a:hover {
+  color: #fff;
+}
 
-      .hero {
-        padding: 30px 0 60px;
-      }
 
-      .hero-banner {
-        margin-bottom: 35px;
-      }
+/* =========================================================
+   CONTAINER
+========================================================= */
 
-      .hero p {
-        font-size: 15px;
-      }
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 25px;
+}
 
-      section {
-        padding: 65px 0;
-      }
 
-      .section-text {
-        font-size: 16px;
-      }
+/* =========================================================
+   HERO
+========================================================= */
 
-      .cards {
-        grid-template-columns: 1fr;
-      }
+.hero {
+  position: relative;
+  padding: 65px 0 80px;
+  text-align: center;
+}
 
-      .flow {
-        grid-template-columns: 1fr;
-      }
+.hero-banner {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
 
-      .utility-box {
-        padding: 25px;
-      }
+  display: block;
+  margin: 0 auto 55px;
 
-      .supply-number {
-        font-size: 100px;
-      }
+  border-radius: 8px;
 
-      .closing {
-        padding: 80px 20px;
-      }
-    }
-  </style>
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow:
+    0 30px 100px rgba(0,0,0,0.55),
+    0 0 80px rgba(170,130,255,0.08);
+}
+
+
+.hero h1 {
+  font-size: clamp(42px, 8vw, 88px);
+  line-height: 0.95;
+
+  font-weight: 900;
+  letter-spacing: 3px;
+
+  margin-bottom: 30px;
+
+  text-shadow:
+    0 0 40px rgba(255,255,255,0.08);
+}
+
+
+.hero-description {
+  max-width: 680px;
+  margin: auto;
+
+  color: #999;
+
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+
+.hero-chain {
+  margin-top: 28px;
+
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo-area {
+  padding: 30px 0 110px;
+  text-align: center;
+}
+
+.logo {
+  width: min(350px, 82%);
+  height: auto;
+
+  display: block;
+  margin: auto;
+
+  filter:
+    drop-shadow(0 30px 50px rgba(0,0,0,0.55))
+    drop-shadow(0 0 40px rgba(160,130,255,0.08));
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+section {
+  position: relative;
+
+  padding: 110px 0;
+
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+
+.section-title {
+  font-size: clamp(34px, 6vw, 60px);
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 30px;
+}
+
+
+.section-text {
+  max-width: 760px;
+
+  color: #999;
+
+  font-size: 18px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.cards {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+
+  margin-top: 50px;
+}
+
+
+.card {
+  position: relative;
+
+  padding: 35px;
+
+  min-height: 230px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.055),
+      rgba(255,255,255,0.015)
+    );
+
+  border: 1px solid rgba(255,255,255,0.09);
+
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+
+.card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 150px;
+  height: 150px;
+
+  top: -100px;
+  right: -80px;
+
+  border-radius: 50%;
+
+  background: rgba(190,150,255,0.12);
+
+  filter: blur(25px);
+}
+
+
+.card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(255,255,255,0.18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.08),
+      rgba(255,255,255,0.025)
+    );
+}
+
+
+.card-number {
+  color: #666;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 22px;
+}
+
+
+.card h3 {
+  font-size: 27px;
+
+  margin-bottom: 14px;
+}
+
+
+.card p {
+  color: #888;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   UTILITY
+========================================================= */
+
+.utility-box {
+  position: relative;
+
+  margin-top: 50px;
+
+  padding: 45px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.06),
+      rgba(255,255,255,0.015)
+    );
+
+  border: 1px solid rgba(255,255,255,0.10);
+
+  border-radius: 8px;
+
+  overflow: hidden;
+}
+
+
+.utility-box::after {
+  content: "";
+
+  position: absolute;
+
+  width: 250px;
+  height: 250px;
+
+  right: -100px;
+  top: -130px;
+
+  border-radius: 50%;
+
+  background: rgba(170,130,255,0.10);
+
+  filter: blur(50px);
+}
+
+
+.utility-box h3 {
+  position: relative;
+  z-index: 2;
+
+  font-size: 30px;
+
+  margin-bottom: 20px;
+
+  letter-spacing: 2px;
+}
+
+
+.utility-box p {
+  position: relative;
+  z-index: 2;
+
+  max-width: 760px;
+
+  color: #999;
+
+  line-height: 1.8;
+
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   FLOW
+========================================================= */
+
+.flow {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 16px;
+
+  margin-top: 50px;
+}
+
+
+.flow-item {
+  padding: 45px 25px;
+
+  text-align: center;
+
+  background:
+    rgba(255,255,255,0.025);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  border-radius: 8px;
+
+  transition: 0.3s ease;
+}
+
+
+.flow-item:hover {
+  transform: translateY(-5px);
+
+  background:
+    rgba(255,255,255,0.05);
+}
+
+
+.flow-item strong {
+  display: block;
+
+  font-size: 27px;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 12px;
+}
+
+
+.flow-item span {
+  color: #777;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   SUPPLY
+========================================================= */
+
+.supply {
+  text-align: center;
+}
+
+
+.supply .section-title {
+  margin-bottom: 40px;
+}
+
+
+.supply-number {
+  font-size: clamp(100px, 20vw, 210px);
+
+  line-height: 0.85;
+
+  font-weight: 900;
+
+  letter-spacing: -5px;
+
+  margin: 20px 0 45px;
+
+  text-shadow:
+    0 0 70px rgba(255,255,255,0.08);
+}
+
+
+/* =========================================================
+   OPENSEA BUTTON
+========================================================= */
+
+.opensea-link {
+  display: inline-block;
+
+  padding: 16px 28px;
+
+  background:
+    rgba(255,255,255,0.03);
+
+  border:
+    1px solid rgba(255,255,255,0.18);
+
+  color: #fff;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 3px;
+
+  cursor: pointer;
+
+  transition:
+    0.25s ease;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+
+.opensea-link:hover {
+  background: #fff;
+
+  color: #050505;
+
+  border-color: #fff;
+
+  box-shadow:
+    0 10px 40px rgba(255,255,255,0.10);
+}
+
+
+.soon-message {
+  display: none;
+
+  margin-top: 22px;
+
+  color: #888;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 5px;
+
+  animation: soonFade 0.35s ease;
+}
+
+
+@keyframes soonFade {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   CLOSING
+========================================================= */
+
+.closing {
+  text-align: center;
+
+  padding: 140px 20px;
+}
+
+
+.closing h2 {
+  font-size: clamp(38px, 8vw, 82px);
+
+  line-height: 0.98;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 35px;
+}
+
+
+.closing p {
+  max-width: 650px;
+
+  margin: auto;
+
+  color: #777;
+
+  font-size: 16px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   X / SOCIAL
+========================================================= */
+
+.social {
+  padding: 50px 20px;
+
+  text-align: center;
+
+  border-top:
+    1px solid rgba(255,255,255,0.07);
+}
+
+
+.social a {
+  display: inline-block;
+
+  color: #888;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 3px;
+
+  transition: 0.25s ease;
+}
+
+
+.social a:hover {
+  color: #fff;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+  padding: 35px 20px 50px;
+
+  text-align: center;
+
+  border-top:
+    1px solid rgba(255,255,255,0.05);
+}
+
+
+.watermark {
+  color: #444;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+}
+
+
+.disclaimer {
+  max-width: 720px;
+
+  margin: 18px auto 0;
+
+  color: #333;
+
+  font-size: 9px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .nav-inner {
+    padding: 17px 15px;
+  }
+
+
+  .brand {
+    font-size: 12px;
+
+    letter-spacing: 2px;
+  }
+
+
+  .nav-links {
+    gap: 13px;
+  }
+
+
+  .nav-links a {
+    font-size: 9px;
+
+    letter-spacing: 1px;
+  }
+
+
+  .container {
+    padding:
+      0 18px;
+  }
+
+
+  .hero {
+    padding:
+      35px 0 65px;
+  }
+
+
+  .hero-banner {
+    margin-bottom: 38px;
+
+    border-radius: 5px;
+  }
+
+
+  .hero h1 {
+    font-size: 43px;
+
+    letter-spacing: 1px;
+  }
+
+
+  .hero-description {
+    font-size: 15px;
+
+    line-height: 1.7;
+  }
+
+
+  .hero-chain {
+    font-size: 9px;
+
+    letter-spacing: 3px;
+  }
+
+
+  .logo-area {
+    padding:
+      10px 0 80px;
+  }
+
+
+  section {
+    padding:
+      75px 0;
+  }
+
+
+  .section-title {
+    font-size: 36px;
+  }
+
+
+  .section-text {
+    font-size: 15px;
+
+    line-height: 1.75;
+  }
+
+
+  .cards {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+
+    margin-top: 35px;
+  }
+
+
+  .card {
+    min-height: auto;
+
+    padding: 28px;
+  }
+
+
+  .utility-box {
+    padding: 28px;
+
+    margin-top: 35px;
+  }
+
+
+  .utility-box h3 {
+    font-size: 23px;
+  }
+
+
+  .flow {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    margin-top: 35px;
+  }
+
+
+  .flow-item {
+    padding: 30px 20px;
+  }
+
+
+  .supply-number {
+    font-size: 115px;
+
+    margin:
+      25px 0 40px;
+  }
+
+
+  .closing {
+    padding:
+      90px 20px;
+  }
+
+
+  .closing h2 {
+    font-size: 43px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+
+    transition: none !important;
+
+    scroll-behavior: auto !important;
+  }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <!-- NAVIGATION -->
-  <nav class="nav">
-    <div class="nav-inner">
 
-      <div class="brand">
-        WASHING MACHINE
-      </div>
+<!-- ANIMATED LIGHTS -->
 
-      <div class="nav-links">
-        <a href="#about">ABOUT</a>
-        <a href="#utility">UTILITY</a>
-        <a href="#supply">SUPPLY</a>
-      </div>
+<div class="light light-one"></div>
+<div class="light light-two"></div>
+<div class="light light-three"></div>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="nav">
+
+  <div class="nav-inner">
+
+    <div class="brand">
+      WASHING MACHINE
+    </div>
+
+    <div class="nav-links">
+
+      <a href="#about">
+        ABOUT
+      </a>
+
+      <a href="#utility">
+        UTILITY
+      </a>
+
+      <a href="#supply">
+        SUPPLY
+      </a>
 
     </div>
-  </nav>
+
+  </div>
+
+</nav>
 
 
-  <!-- HERO -->
-  <main>
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
-    <div class="hero">
-      <div class="container">
+<main>
 
-        <img
-          class="hero-banner"
-          src="./assets/banner1.png"
-          alt="Washing Machine Banner"
-        >
 
-        <h1>YOUR WALLET<br>GETS DIRTY.</h1>
+<!-- HERO -->
+
+<div class="hero">
+
+  <div class="container">
+
+    <img
+      class="hero-banner"
+      src="./assets/banner1.png"
+      alt="Washing Machine"
+    >
+
+    <h1>
+      YOUR WALLET<br>
+      GETS DIRTY.
+    </h1>
+
+    <p class="hero-description">
+      Crypto wallets collect dust, tiny balances and
+      forgotten tokens. Washing Machine is built around
+      the idea of cleaning them up.
+    </p>
+
+    <p class="hero-chain">
+      BUILT ON ROBINHOOD CHAIN
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- LOGO -->
+
+<div class="logo-area">
+
+  <img
+    class="logo"
+    src="./assets/logo1.png"
+    alt="Washing Machine Logo"
+  >
+
+</div>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section id="about">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      THE MACHINE
+    </h2>
+
+    <p class="section-text">
+      Washing Machine is a limited NFT collection
+      designed around a simple crypto problem:
+      wallets can become cluttered with dust coins,
+      tiny balances and unwanted assets.
+    </p>
+
+
+    <div class="cards">
+
+
+      <div class="card">
+
+        <div class="card-number">
+          01
+        </div>
+
+        <h3>
+          HOLD
+        </h3>
 
         <p>
-          Crypto wallets collect dust, tiny balances and forgotten tokens.
-          Washing Machine is built around the idea of cleaning them up.
-        </p>
-
-        <p class="hero-small">
-          BUILT ON ROBINHOOD CHAIN
+          Hold a Washing Machine NFT and become
+          part of the ecosystem.
         </p>
 
       </div>
+
+
+      <div class="card">
+
+        <div class="card-number">
+          02
+        </div>
+
+        <h3>
+          WASH
+        </h3>
+
+        <p>
+          The planned Washing mechanism is designed
+          to process eligible dust and unwanted balances.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-number">
+          03
+        </div>
+
+        <h3>
+          EARN
+        </h3>
+
+        <p>
+          Eligible holders could potentially receive
+          ecosystem rewards such as $WASH and $USDG.
+        </p>
+
+      </div>
+
+
     </div>
 
+  </div>
 
-    <!-- LOGO -->
-    <div class="logo-area">
-      <img
-        class="logo"
-        src="./assets/logo1.png"
-        alt="Washing Machine Logo"
-      >
-    </div>
+</section>
 
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="container">
+<!-- =====================================================
+     UTILITY
+===================================================== -->
 
-        <h2 class="section-title">
-          THE MACHINE
-        </h2>
+<section id="utility">
 
-        <p class="section-text">
-          Washing Machine is a limited NFT collection designed around
-          a simple crypto problem: wallets can become cluttered with
-          dust coins, tiny balances and unwanted assets.
-        </p>
+  <div class="container">
 
-        <div class="cards">
+    <h2 class="section-title">
+      UTILITY
+    </h2>
 
-          <div class="card">
-            <div class="card-number">01</div>
-            <h3>HOLD</h3>
-            <p>
-              Hold a Washing Machine NFT and become part of the ecosystem.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-number">02</div>
-            <h3>WASH</h3>
-            <p>
-              The planned Washing mechanism is designed to process
-              eligible dust and unwanted balances.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-number">03</div>
-            <h3>EARN</h3>
-            <p>
-              Eligible holders could potentially receive ecosystem
-              rewards such as $WASH and $USDG.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
+    <p class="section-text">
+      The Machine is designed to be more than a
+      collectible. Its planned utility revolves around
+      turning wallet dust into something potentially useful.
+    </p>
 
 
-    <!-- UTILITY -->
-    <section id="utility">
-      <div class="container">
+    <div class="utility-box">
 
-        <h2 class="section-title">
-          UTILITY
-        </h2>
-
-        <p class="section-text">
-          The Machine is designed to be more than a collectible.
-          Its planned utility revolves around turning wallet dust
-          into something potentially useful.
-        </p>
-
-        <div class="utility-box">
-
-          <h3>
-            HOLD → WASH → EARN
-          </h3>
-
-          <p>
-            The ecosystem is planned around a Washing mechanism where
-            eligible dust or unwanted token balances could be processed.
-            Depending on the final technical implementation, holders
-            may potentially earn $WASH and other ecosystem rewards.
-          </p>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- FLOW -->
-    <section>
-      <div class="container">
-
-        <h2 class="section-title">
-          HOW IT WORKS
-        </h2>
-
-        <div class="flow">
-
-          <div class="flow-item">
-            <strong>HOLD</strong>
-            <span>OWN THE MACHINE</span>
-          </div>
-
-          <div class="flow-item">
-            <strong>WASH</strong>
-            <span>PROCESS ELIGIBLE DUST</span>
-          </div>
-
-          <div class="flow-item">
-            <strong>EARN</strong>
-            <span>POTENTIAL ECOSYSTEM REWARDS</span>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- SUPPLY -->
-    <section id="supply">
-      <div class="container supply">
-
-        <h2 class="section-title">
-          SUPPLY
-        </h2>
-
-        <div class="supply-number">
-          500
-        </div>
-
-        <div class="supply-label">
-          ONLY 500 MACHINES WILL EVER EXIST
-        </div>
-
-        <p class="section-text" style="margin:30px auto 0;">
-          Not 5,000. Not 10,000. Just 500.
-        </p>
-
-      </div>
-    </section>
-
-
-    <!-- CLOSING -->
-    <section class="closing">
-
-      <h2>
-        YOUR WALLET<br>
-        GETS DIRTY.<br>
-        YOUR MACHINE<br>
-        WASHES IT.
-      </h2>
+      <h3>
+        HOLD → WASH → EARN
+      </h3>
 
       <p>
-        Washing Machine is built on Robinhood Chain.
-        A small collection with a simple idea:
-        clean the dust, use the machine.
+        The ecosystem is planned around a Washing
+        mechanism where eligible dust or unwanted token
+        balances could be processed. Depending on the
+        final technical implementation, holders may
+        potentially earn $WASH and other ecosystem rewards.
       </p>
 
-    </section>
-
-
-    <!-- X -->
-    <div class="social">
-      <a
-        href="https://x.com/washmachinesnft"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        X / @washmachinesnft
-      </a>
     </div>
 
-  </main>
+  </div>
+
+</section>
 
 
-  <!-- FOOTER -->
-  <footer>
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
 
-    <div class="watermark">
-      2026 © WASHING MACHINE
+<section>
+
+  <div class="container">
+
+    <h2 class="section-title">
+      HOW IT WORKS
+    </h2>
+
+
+    <div class="flow">
+
+
+      <div class="flow-item">
+
+        <strong>
+          HOLD
+        </strong>
+
+        <span>
+          OWN THE MACHINE
+        </span>
+
+      </div>
+
+
+      <div class="flow-item">
+
+        <strong>
+          WASH
+        </strong>
+
+        <span>
+          PROCESS ELIGIBLE DUST
+        </span>
+
+      </div>
+
+
+      <div class="flow-item">
+
+        <strong>
+          EARN
+        </strong>
+
+        <span>
+          POTENTIAL ECOSYSTEM REWARDS
+        </span>
+
+      </div>
+
+
     </div>
 
-    <div class="disclaimer">
-      Washing Machine utility and reward mechanisms are planned concepts
-      and remain subject to final technical implementation, eligibility,
-      availability and applicable requirements. Nothing on this website
-      guarantees rewards or returns.
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     SUPPLY
+===================================================== -->
+
+<section id="supply">
+
+  <div class="container supply">
+
+    <h2 class="section-title">
+      SUPPLY
+    </h2>
+
+
+    <div class="supply-number">
+      500
     </div>
 
-  </footer>
+
+    <button
+      class="opensea-link"
+      onclick="showSoon()"
+    >
+      VIEW ON OPENSEA →
+    </button>
+
+
+    <div
+      id="soon-message"
+      class="soon-message"
+    >
+      SOON
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CLOSING
+===================================================== -->
+
+<section class="closing">
+
+  <h2>
+    YOUR WALLET<br>
+    GETS DIRTY.<br>
+    YOUR MACHINE<br>
+    WASHES IT.
+  </h2>
+
+  <p>
+    Washing Machine is built on Robinhood Chain.
+    A small collection with a simple idea:
+    clean the dust, use the machine.
+  </p>
+
+</section>
+
+
+<!-- =====================================================
+     X
+===================================================== -->
+
+<div class="social">
+
+  <a
+    href="https://x.com/washmachinesnft"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    X / @washmachinesnft
+  </a>
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+  <div class="watermark">
+    2026 © WASHING MACHINE
+  </div>
+
+  <div class="disclaimer">
+    Washing Machine utility and reward mechanisms are
+    planned concepts and remain subject to final technical
+    implementation, eligibility, availability and applicable
+    requirements. Nothing on this website guarantees
+    rewards or returns.
+  </div>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+function showSoon() {
+
+  const message =
+    document.getElementById("soon-message");
+
+  if (message.style.display === "block") {
+
+    message.style.display = "none";
+
+  } else {
+
+    message.style.display = "block";
+
+  }
+
+}
+
+</script>
+
 
 </body>
 </html>
