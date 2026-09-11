@@ -2,34 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Washing Machine</title>
 
-  <meta
-    name="description"
-    content="Washing Machine — 500 Machines built on Robinhood Chain."
-  >
-
-  <meta
-    name="theme-color"
-    content="#09090b"
-  >
-
   <style>
-
-    /* =====================================================
-       RESET
-    ===================================================== */
-
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     html {
@@ -37,20 +18,10 @@
     }
 
     body {
-      margin: 0;
-
-      background: #09090b;
-
-      color: #f5f5f5;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+      background: #080808;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
-
-      overflow-x: hidden;
     }
 
     a {
@@ -58,1608 +29,584 @@
       text-decoration: none;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-
-    /* =====================================================
-       VARIABLES
-    ===================================================== */
-
-    :root {
-
-      --black: #09090b;
-
-      --black-2: #0d0d10;
-
-      --black-3: #111114;
-
-      --border: #25252c;
-
-      --border-light: #34343d;
-
-      --white: #f5f5f7;
-
-      --gray: #92929c;
-
-      --gray-dark: #62626c;
-
-      --lavender: #cbbcff;
-
-      --lavender-light: #e6e0ff;
-
-      --mint: #b8f5dc;
-
-      --pink: #ffb9dc;
-    }
-
-
-    /* =====================================================
-       WATERMARK
-    ===================================================== */
-
-    .watermark {
-
-      position: fixed;
-
-      right: 18px;
-      bottom: 14px;
-
-      z-index: 9999;
-
-      color:
-        rgba(255,255,255,0.10);
-
-      font-size: 9px;
-
-      font-weight: 800;
-
-      letter-spacing: 2px;
-
-      pointer-events: none;
-
-      user-select: none;
-
-      white-space: nowrap;
-    }
-
-
-    /* =====================================================
-       NAVBAR
-    ===================================================== */
-
-    .navbar {
-
+    /* NAVBAR */
+    .nav {
       position: sticky;
-
       top: 0;
-
-      z-index: 1000;
-
+      z-index: 100;
       width: 100%;
-
-      background:
-        rgba(9,9,11,0.94);
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,0.07);
-
-      backdrop-filter:
-        blur(15px);
+      background: #080808;
+      border-bottom: 1px solid #222;
     }
 
-    .nav-container {
-
-      width: 100%;
-
-      max-width: 1200px;
-
-      min-height: 78px;
-
+    .nav-inner {
+      max-width: 1100px;
       margin: auto;
-
-      padding:
-        12px 24px;
-
+      padding: 18px 24px;
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
-      gap: 30px;
+      gap: 20px;
     }
 
-
-    /* LOGO */
-
-    .nav-logo {
-
-      display: flex;
-
-      align-items: center;
-
-      flex-shrink: 0;
+    .brand {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 2px;
     }
-
-    .nav-logo img {
-
-      width: 190px;
-
-      height: auto;
-
-      max-height: 58px;
-
-      object-fit: contain;
-    }
-
-
-    /* NAV LINKS */
 
     .nav-links {
-
       display: flex;
-
-      align-items: center;
-
-      gap: 32px;
+      gap: 24px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
 
     .nav-links a {
-
-      color: #9999a3;
-
-      font-size: 12px;
-
-      font-weight: 800;
-
-      letter-spacing: 1px;
-
-      text-transform: uppercase;
-
-      transition:
-        color 0.2s ease;
+      color: #aaa;
     }
 
     .nav-links a:hover {
-
-      color:
-        #ffffff;
+      color: #fff;
     }
 
+    /* MAIN */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 24px;
+    }
 
-    /* =====================================================
-       HERO
-    ===================================================== */
-
+    /* HERO */
     .hero {
-
-      width: 100%;
-
-      padding:
-        65px 24px 100px;
-    }
-
-    .hero-container {
-
-      width: 100%;
-
-      max-width: 1200px;
-
-      margin: auto;
-    }
-
-
-    /* HERO BANNER */
-
-    .hero-banner {
-
-      width: 100%;
-
-      margin-bottom: 70px;
-
-      overflow: hidden;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius: 18px;
-
-      background:
-        #cbbcff;
-    }
-
-    .hero-banner img {
-
-      width: 100%;
-
-      height: auto;
-
-      display: block;
-    }
-
-
-    /* HERO CONTENT */
-
-    .hero-content {
-
-      max-width: 950px;
-
-      margin: auto;
-
+      padding: 50px 0 80px;
       text-align: center;
     }
 
+    .hero-banner {
+      width: 100%;
+      max-width: 1000px;
+      display: block;
+      margin: 0 auto 45px;
+      border-radius: 4px;
+    }
 
-    .eyebrow {
-
-      display: inline-block;
-
-      padding:
-        8px 13px;
-
-      margin-bottom: 24px;
-
-      border:
-        1px solid
-        rgba(203,188,255,0.25);
-
-      border-radius: 999px;
-
-      background:
-        rgba(203,188,255,0.05);
-
-      color:
-        var(--lavender);
-
-      font-size: 10px;
-
+    .hero h1 {
+      font-size: clamp(38px, 8vw, 78px);
+      line-height: 1;
       font-weight: 900;
-
-      letter-spacing: 1.7px;
-
-      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 22px;
     }
 
-
-    .hero-title {
-
-      font-size:
-        clamp(45px, 8vw, 88px);
-
-      line-height:
-        0.95;
-
-      letter-spacing:
-        -5px;
-
-      text-transform:
-        uppercase;
-
-      margin-bottom:
-        28px;
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: #aaa;
+      font-size: 18px;
     }
 
-    .hero-title span {
-
-      color:
-        var(--lavender);
+    .hero-small {
+      margin-top: 22px !important;
+      color: #ffffff !important;
+      font-size: 14px !important;
+      font-weight: bold;
+      letter-spacing: 2px;
     }
 
-
-    .hero-description {
-
-      max-width:
-        730px;
-
-      margin:
-        auto;
-
-      color:
-        var(--gray);
-
-      font-size:
-        17px;
-
-      line-height:
-        1.8;
+    /* LOGO */
+    .logo-area {
+      padding: 30px 0 90px;
+      text-align: center;
     }
 
-    .hero-description strong {
-
-      color:
-        #ffffff;
-    }
-
-
-    /* =====================================================
-       HERO STATS
-    ===================================================== */
-
-    .hero-stats {
-
-      max-width:
-        720px;
-
-      margin:
-        50px auto 0;
-
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      border-top:
-        1px solid
-        var(--border);
-
-      border-bottom:
-        1px solid
-        var(--border);
-    }
-
-    .hero-stat {
-
-      padding:
-        22px 15px;
-
-      border-right:
-        1px solid
-        var(--border);
-    }
-
-    .hero-stat:last-child {
-
-      border-right:
-        none;
-    }
-
-    .hero-stat-number {
-
-      color:
-        #ffffff;
-
-      font-size:
-        27px;
-
-      font-weight:
-        900;
-    }
-
-    .hero-stat-label {
-
-      color:
-        var(--gray-dark);
-
-      font-size:
-        9px;
-
-      font-weight:
-        900;
-
-      letter-spacing:
-        1.5px;
-
-      text-transform:
-        uppercase;
-    }
-
-
-    /* =====================================================
-       GENERAL
-    ===================================================== */
-
-    .section {
-
-      width: 100%;
-
-      padding:
-        110px 24px;
-    }
-
-    .section-dark {
-
-      background:
-        var(--black);
-    }
-
-    .section-soft {
-
-      background:
-        var(--black-2);
-
-      border-top:
-        1px solid
-        var(--border);
-
-      border-bottom:
-        1px solid
-        var(--border);
-    }
-
-    .container {
-
-      width: 100%;
-
-      max-width: 1200px;
-
+    .logo {
+      width: min(360px, 85%);
+      height: auto;
+      display: block;
       margin: auto;
     }
 
-
-    .section-label {
-
-      color:
-        var(--lavender);
-
-      font-size:
-        10px;
-
-      font-weight:
-        900;
-
-      letter-spacing:
-        2px;
-
-      text-transform:
-        uppercase;
-
-      margin-bottom:
-        15px;
+    /* SECTIONS */
+    section {
+      padding: 90px 0;
+      border-top: 1px solid #1c1c1c;
     }
-
 
     .section-title {
-
-      max-width:
-        850px;
-
-      color:
-        #ffffff;
-
-      font-size:
-        clamp(38px, 6vw, 65px);
-
-      line-height:
-        1;
-
-      letter-spacing:
-        -3px;
-
-      text-transform:
-        uppercase;
-
-      margin-bottom:
-        25px;
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 900;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
     }
 
-
-    .section-description {
-
-      max-width:
-        730px;
-
-      color:
-        var(--gray);
-
-      font-size:
-        16px;
-
-      line-height:
-        1.8;
+    .section-text {
+      max-width: 760px;
+      color: #aaa;
+      font-size: 18px;
     }
 
-
-    /* =====================================================
-       ABOUT
-    ===================================================== */
-
-    .about-grid {
-
-      margin-top:
-        60px;
-
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap:
-        18px;
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 40px;
     }
 
-
-    .about-card {
-
-      min-height:
-        260px;
-
-      padding:
-        30px;
-
-      background:
-        var(--black-3);
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        15px;
-
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
+    .card {
+      background: #111;
+      border: 1px solid #262626;
+      padding: 30px;
+      border-radius: 6px;
     }
 
-    .about-card:hover {
-
-      transform:
-        translateY(-4px);
-
-      border-color:
-        var(--border-light);
+    .card-number {
+      font-size: 13px;
+      color: #777;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
     }
 
-
-    .about-number {
-
-      color:
-        var(--lavender);
-
-      font-size:
-        11px;
-
-      font-weight:
-        900;
-
-      letter-spacing:
-        1px;
-
-      margin-bottom:
-        50px;
+    .card h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
     }
 
-
-    .about-card h3 {
-
-      color:
-        #ffffff;
-
-      font-size:
-        22px;
-
-      text-transform:
-        uppercase;
-
-      margin-bottom:
-        13px;
+    .card p {
+      color: #999;
+      font-size: 15px;
     }
 
-
-    .about-card p {
-
-      color:
-        #85858e;
-
-      font-size:
-        14px;
-
-      line-height:
-        1.75;
+    /* UTILITY */
+    .utility-box {
+      margin-top: 40px;
+      padding: 40px;
+      background: #101010;
+      border: 1px solid #292929;
+      border-radius: 6px;
     }
 
-
-    /* =====================================================
-       WALLET PROBLEM
-    ===================================================== */
-
-    .problem {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap:
-        70px;
-
-      align-items:
-        center;
+    .utility-box h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
     }
 
-
-    .problem-box {
-
-      padding:
-        40px;
-
-      background:
-        var(--black-3);
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        16px;
+    .utility-box p {
+      color: #aaa;
+      max-width: 760px;
     }
-
-
-    .problem-list {
-
-      display:
-        flex;
-
-      flex-direction:
-        column;
-
-      gap:
-        0;
-    }
-
-
-    .problem-item {
-
-      padding:
-        20px 0;
-
-      border-bottom:
-        1px solid
-        var(--border);
-    }
-
-    .problem-item:last-child {
-
-      border-bottom:
-        none;
-    }
-
-
-    .problem-item strong {
-
-      display:
-        block;
-
-      color:
-        #ffffff;
-
-      font-size:
-        15px;
-
-      margin-bottom:
-        4px;
-    }
-
-
-    .problem-item span {
-
-      color:
-        #74747e;
-
-      font-size:
-        13px;
-    }
-
-
-    /* =====================================================
-       UTILITY
-    ===================================================== */
-
-    .utility-header {
-
-      display:
-        flex;
-
-      justify-content:
-        space-between;
-
-      align-items:
-        flex-end;
-
-      gap:
-        40px;
-
-      margin-bottom:
-        60px;
-    }
-
-
-    .utility-header .section-description {
-
-      max-width:
-        470px;
-    }
-
 
     /* FLOW */
-
     .flow {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        16px;
-
-      overflow:
-        hidden;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 40px;
     }
 
-
-    .flow-card {
-
-      min-height:
-        310px;
-
-      padding:
-        35px;
-
-      background:
-        var(--black-3);
-
-      border-right:
-        1px solid
-        var(--border);
+    .flow-item {
+      border: 1px solid #292929;
+      padding: 35px 20px;
+      text-align: center;
+      background: #0e0e0e;
     }
 
-
-    .flow-card:last-child {
-
-      border-right:
-        none;
+    .flow-item strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 8px;
     }
 
-
-    .flow-number {
-
-      color:
-        #5e5e68;
-
-      font-size:
-        11px;
-
-      font-weight:
-        900;
+    .flow-item span {
+      color: #777;
+      font-size: 13px;
+      letter-spacing: 1px;
     }
 
-
-    .flow-card h3 {
-
-      margin-top:
-        95px;
-
-      margin-bottom:
-        12px;
-
-      font-size:
-        37px;
-
-      line-height:
-        1;
-
-      letter-spacing:
-        -1px;
-    }
-
-
-    .flow-card p {
-
-      max-width:
-        300px;
-
-      color:
-        #85858e;
-
-      font-size:
-        14px;
-
-      line-height:
-        1.7;
-    }
-
-
-    .flow-card:nth-child(1) h3 {
-
-      color:
-        var(--lavender);
-    }
-
-
-    .flow-card:nth-child(2) h3 {
-
-      color:
-        var(--mint);
-    }
-
-
-    .flow-card:nth-child(3) h3 {
-
-      color:
-        var(--pink);
-    }
-
-
-    /* =====================================================
-       TOKEN UTILITY
-    ===================================================== */
-
-    .token-grid {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap:
-        18px;
-
-      margin-top:
-        20px;
-    }
-
-
-    .token-card {
-
-      padding:
-        38px;
-
-      background:
-        var(--black-3);
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        15px;
-    }
-
-
-    .token-symbol {
-
-      display:
-        inline-block;
-
-      padding:
-        8px 12px;
-
-      margin-bottom:
-        25px;
-
-      background:
-        #1b1b20;
-
-      color:
-        #ffffff;
-
-      border-radius:
-        7px;
-
-      font-size:
-        11px;
-
-      font-weight:
-        900;
-    }
-
-
-    .token-card h3 {
-
-      color:
-        #ffffff;
-
-      font-size:
-        27px;
-
-      margin-bottom:
-        12px;
-    }
-
-
-    .token-card p {
-
-      color:
-        #85858e;
-
-      font-size:
-        14px;
-
-      line-height:
-        1.8;
-    }
-
-
-    /* =====================================================
-       SUPPLY
-    ===================================================== */
-
+    /* SUPPLY */
     .supply {
-
-      padding:
-        120px 24px;
-
-      background:
-        var(--lavender);
-
-      color:
-        #0b0b0d;
-
-      text-align:
-        center;
+      text-align: center;
     }
-
-
-    .supply .section-label {
-
-      color:
-        #514967;
-    }
-
 
     .supply-number {
-
-      font-size:
-        clamp(130px, 25vw, 290px);
-
-      font-weight:
-        900;
-
-      line-height:
-        0.8;
-
-      letter-spacing:
-        -15px;
-
-      margin:
-        45px 0;
+      font-size: clamp(80px, 18vw, 180px);
+      font-weight: 900;
+      line-height: 1;
+      margin: 30px 0;
     }
 
-
-    .supply-title {
-
-      font-size:
-        clamp(32px, 5vw, 60px);
-
-      line-height:
-        1;
-
-      letter-spacing:
-        -3px;
-
-      text-transform:
-        uppercase;
-
-      margin-bottom:
-        25px;
+    .supply-label {
+      color: #aaa;
+      font-size: 18px;
+      letter-spacing: 3px;
+      font-weight: bold;
     }
 
-
-    .supply-text {
-
-      max-width:
-        620px;
-
-      margin:
-        auto;
-
-      color:
-        #454052;
-
-      font-size:
-        16px;
-
-      line-height:
-        1.8;
-    }
-
-
-    /* =====================================================
-       CLOSING
-    ===================================================== */
-
+    /* CTA */
     .closing {
-
-      padding:
-        120px 24px;
+      text-align: center;
+      padding: 120px 20px;
     }
 
-
-    .closing-inner {
-
-      max-width:
-        900px;
-
-      margin:
-        auto;
-
-      text-align:
-        center;
+    .closing h2 {
+      font-size: clamp(32px, 7vw, 65px);
+      line-height: 1.05;
+      margin-bottom: 25px;
     }
 
-
-    .closing-title {
-
-      font-size:
-        clamp(40px, 7vw, 75px);
-
-      line-height:
-        0.95;
-
-      letter-spacing:
-        -4px;
-
-      text-transform:
-        uppercase;
-
-      margin:
-        25px 0;
+    .closing p {
+      color: #888;
+      max-width: 600px;
+      margin: auto;
     }
 
-
-    .closing-title span {
-
-      color:
-        var(--lavender);
+    /* X */
+    .social {
+      text-align: center;
+      padding: 45px 20px;
+      border-top: 1px solid #1c1c1c;
     }
 
-
-    .closing-description {
-
-      max-width:
-        680px;
-
-      margin:
-        auto;
-
-      color:
-        var(--gray);
-
-      font-size:
-        16px;
-
-      line-height:
-        1.8;
+    .social a {
+      color: #aaa;
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 14px;
     }
 
-
-    /* =====================================================
-       X
-    ===================================================== */
-
-    .x-section {
-
-      padding:
-        55px 24px;
-
-      border-top:
-        1px solid
-        var(--border);
-
-      background:
-        #070709;
-
-      text-align:
-        center;
+    .social a:hover {
+      color: #fff;
     }
 
-
-    .x-link {
-
-      display:
-        inline-block;
-
-      color:
-        var(--lavender);
-
-      font-size:
-        14px;
-
-      font-weight:
-        900;
-
-      letter-spacing:
-        2px;
-
-      text-transform:
-        uppercase;
-
-      transition:
-        color 0.2s ease;
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 30px 20px 45px;
+      border-top: 1px solid #151515;
     }
 
-
-    .x-link:hover {
-
-      color:
-        #ffffff;
+    .watermark {
+      color: #555;
+      font-size: 11px;
+      letter-spacing: 2px;
     }
-
-
-    /* =====================================================
-       DISCLAIMER
-    ===================================================== */
 
     .disclaimer {
-
-      max-width:
-        850px;
-
-      margin:
-        50px auto 0;
-
-      padding:
-        20px;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        10px;
-
-      background:
-        var(--black-2);
-
-      color:
-        #62626c;
-
-      font-size:
-        11px;
-
-      line-height:
-        1.7;
-
-      text-align:
-        left;
+      max-width: 700px;
+      margin: 15px auto 0;
+      color: #444;
+      font-size: 10px;
+      line-height: 1.6;
     }
 
+    /* MOBILE */
+    @media (max-width: 700px) {
 
-    /* =====================================================
-       FOOTER
-    ===================================================== */
-
-    footer {
-
-      padding:
-        30px 24px 35px;
-
-      background:
-        #050507;
-
-      border-top:
-        1px solid
-        var(--border);
-    }
-
-
-    .footer-container {
-
-      width:
-        100%;
-
-      max-width:
-        1200px;
-
-      margin:
-        auto;
-
-      text-align:
-        center;
-    }
-
-
-    .footer-logo {
-
-      margin-bottom:
-        15px;
-    }
-
-
-    .footer-logo img {
-
-      width:
-        145px;
-
-      max-width:
-        60%;
-
-      height:
-        auto;
-
-      margin:
-        auto;
-    }
-
-
-    .copyright {
-
-      color:
-        #565660;
-
-      font-size:
-        10px;
-
-      font-weight:
-        700;
-
-      letter-spacing:
-        1.5px;
-
-      text-transform:
-        uppercase;
-    }
-
-
-    /* =====================================================
-       MOBILE
-    ===================================================== */
-
-    @media (max-width: 850px) {
-
-      .nav-container {
-
-        min-height:
-          68px;
-
-        padding:
-          10px 18px;
+      .nav-inner {
+        padding: 16px;
       }
 
-
-      .nav-logo img {
-
-        width:
-          150px;
+      .brand {
+        font-size: 14px;
       }
-
 
       .nav-links {
-
-        gap:
-          16px;
+        gap: 12px;
+        font-size: 10px;
       }
 
-
-      .nav-links a {
-
-        font-size:
-          9px;
-
-        letter-spacing:
-          0.7px;
+      .container {
+        padding: 0 18px;
       }
-
 
       .hero {
-
-        padding:
-          35px 18px 75px;
+        padding: 30px 0 60px;
       }
-
 
       .hero-banner {
-
-        margin-bottom:
-          50px;
-
-        border-radius:
-          12px;
+        margin-bottom: 35px;
       }
 
-
-      .hero-title {
-
-        letter-spacing:
-          -3px;
+      .hero p {
+        font-size: 15px;
       }
 
-
-      .hero-description {
-
-        font-size:
-          15px;
+      section {
+        padding: 65px 0;
       }
 
-
-      .about-grid {
-
-        grid-template-columns:
-          1fr;
+      .section-text {
+        font-size: 16px;
       }
 
-
-      .problem {
-
-        grid-template-columns:
-          1fr;
-
-        gap:
-          35px;
+      .cards {
+        grid-template-columns: 1fr;
       }
-
-
-      .utility-header {
-
-        display:
-          block;
-      }
-
-
-      .utility-header .section-description {
-
-        margin-top:
-          20px;
-      }
-
 
       .flow {
-
-        grid-template-columns:
-          1fr;
+        grid-template-columns: 1fr;
       }
 
-
-      .flow-card {
-
-        min-height:
-          auto;
-
-        border-right:
-          none;
-
-        border-bottom:
-          1px solid
-          var(--border);
+      .utility-box {
+        padding: 25px;
       }
-
-
-      .flow-card:last-child {
-
-        border-bottom:
-          none;
-      }
-
-
-      .flow-card h3 {
-
-        margin-top:
-          45px;
-      }
-
-
-      .token-grid {
-
-        grid-template-columns:
-          1fr;
-      }
-
 
       .supply-number {
-
-        letter-spacing:
-          -8px;
+        font-size: 100px;
       }
-
 
       .closing {
-
-        padding:
-          90px 18px;
-      }
-
-
-      .watermark {
-
-        right:
-          10px;
-
-        bottom:
-          9px;
-
-        font-size:
-          7px;
+        padding: 80px 20px;
       }
     }
-
-
-    /* =====================================================
-       SMALL PHONE
-    ===================================================== */
-
-    @media (max-width: 500px) {
-
-      .nav-container {
-
-        flex-direction:
-          column;
-
-        justify-content:
-          center;
-
-        gap:
-          5px;
-
-        padding:
-          10px 15px;
-      }
-
-
-      .nav-logo img {
-
-        width:
-          135px;
-      }
-
-
-      .nav-links {
-
-        gap:
-          20px;
-      }
-
-
-      .nav-links a {
-
-        font-size:
-          8px;
-      }
-
-
-      .hero {
-
-        padding-top:
-          25px;
-      }
-
-
-      .hero-title {
-
-        font-size:
-          52px;
-      }
-
-
-      .hero-stats {
-
-        grid-template-columns:
-          1fr;
-      }
-
-
-      .hero-stat {
-
-        border-right:
-          none;
-
-        border-bottom:
-          1px solid
-          var(--border);
-      }
-
-
-      .hero-stat:last-child {
-
-        border-bottom:
-          none;
-      }
-
-
-      .section {
-
-        padding:
-          80px 18px;
-      }
-
-
-      .section-title {
-
-        font-size:
-          40px;
-
-        letter-spacing:
-          -2px;
-      }
-
-
-      .about-card {
-
-        min-height:
-          auto;
-
-        padding:
-          25px;
-      }
-
-
-      .about-number {
-
-        margin-bottom:
-          30px;
-      }
-
-
-      .problem-box {
-
-        padding:
-          25px;
-      }
-
-
-      .flow-card {
-
-        padding:
-          27px;
-      }
-
-
-      .token-card {
-
-        padding:
-          27px;
-      }
-
-
-      .supply {
-
-        padding:
-          90px 18px;
-      }
-
-
-      .supply-number {
-
-        font-size:
-          150px;
-      }
-
-
-      .supply-title {
-
-        font-size:
-          38px;
-      }
-
-
-      .closing-title {
-
-        font-size:
-          43px;
-      }
-
-
-      .disclaimer {
-
-        margin-top:
-          45px;
-
-        padding:
-          17px;
-      }
-    }
-
   </style>
 </head>
 
-
 <body>
 
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="nav-inner">
 
-  <!-- =====================================================
-       WATERMARK
-  ==
+      <div class="brand">
+        WASHING MACHINE
+      </div>
+
+      <div class="nav-links">
+        <a href="#about">ABOUT</a>
+        <a href="#utility">UTILITY</a>
+        <a href="#supply">SUPPLY</a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <main>
+
+    <div class="hero">
+      <div class="container">
+
+        <img
+          class="hero-banner"
+          src="./assets/banner1.png"
+          alt="Washing Machine Banner"
+        >
+
+        <h1>YOUR WALLET<br>GETS DIRTY.</h1>
+
+        <p>
+          Crypto wallets collect dust, tiny balances and forgotten tokens.
+          Washing Machine is built around the idea of cleaning them up.
+        </p>
+
+        <p class="hero-small">
+          BUILT ON ROBINHOOD CHAIN
+        </p>
+
+      </div>
+    </div>
+
+
+    <!-- LOGO -->
+    <div class="logo-area">
+      <img
+        class="logo"
+        src="./assets/logo1.png"
+        alt="Washing Machine Logo"
+      >
+    </div>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+
+        <h2 class="section-title">
+          THE MACHINE
+        </h2>
+
+        <p class="section-text">
+          Washing Machine is a limited NFT collection designed around
+          a simple crypto problem: wallets can become cluttered with
+          dust coins, tiny balances and unwanted assets.
+        </p>
+
+        <div class="cards">
+
+          <div class="card">
+            <div class="card-number">01</div>
+            <h3>HOLD</h3>
+            <p>
+              Hold a Washing Machine NFT and become part of the ecosystem.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-number">02</div>
+            <h3>WASH</h3>
+            <p>
+              The planned Washing mechanism is designed to process
+              eligible dust and unwanted balances.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-number">03</div>
+            <h3>EARN</h3>
+            <p>
+              Eligible holders could potentially receive ecosystem
+              rewards such as $WASH and $USDG.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- UTILITY -->
+    <section id="utility">
+      <div class="container">
+
+        <h2 class="section-title">
+          UTILITY
+        </h2>
+
+        <p class="section-text">
+          The Machine is designed to be more than a collectible.
+          Its planned utility revolves around turning wallet dust
+          into something potentially useful.
+        </p>
+
+        <div class="utility-box">
+
+          <h3>
+            HOLD → WASH → EARN
+          </h3>
+
+          <p>
+            The ecosystem is planned around a Washing mechanism where
+            eligible dust or unwanted token balances could be processed.
+            Depending on the final technical implementation, holders
+            may potentially earn $WASH and other ecosystem rewards.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FLOW -->
+    <section>
+      <div class="container">
+
+        <h2 class="section-title">
+          HOW IT WORKS
+        </h2>
+
+        <div class="flow">
+
+          <div class="flow-item">
+            <strong>HOLD</strong>
+            <span>OWN THE MACHINE</span>
+          </div>
+
+          <div class="flow-item">
+            <strong>WASH</strong>
+            <span>PROCESS ELIGIBLE DUST</span>
+          </div>
+
+          <div class="flow-item">
+            <strong>EARN</strong>
+            <span>POTENTIAL ECOSYSTEM REWARDS</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SUPPLY -->
+    <section id="supply">
+      <div class="container supply">
+
+        <h2 class="section-title">
+          SUPPLY
+        </h2>
+
+        <div class="supply-number">
+          500
+        </div>
+
+        <div class="supply-label">
+          ONLY 500 MACHINES WILL EVER EXIST
+        </div>
+
+        <p class="section-text" style="margin:30px auto 0;">
+          Not 5,000. Not 10,000. Just 500.
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- CLOSING -->
+    <section class="closing">
+
+      <h2>
+        YOUR WALLET<br>
+        GETS DIRTY.<br>
+        YOUR MACHINE<br>
+        WASHES IT.
+      </h2>
+
+      <p>
+        Washing Machine is built on Robinhood Chain.
+        A small collection with a simple idea:
+        clean the dust, use the machine.
+      </p>
+
+    </section>
+
+
+    <!-- X -->
+    <div class="social">
+      <a
+        href="https://x.com/washmachinesnft"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        X / @washmachinesnft
+      </a>
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="watermark">
+      2026 © WASHING MACHINE
+    </div>
+
+    <div class="disclaimer">
+      Washing Machine utility and reward mechanisms are planned concepts
+      and remain subject to final technical implementation, eligibility,
+      availability and applicable requirements. Nothing on this website
+      guarantees rewards or returns.
+    </div>
+
+  </footer>
+
+</body>
+</html>
