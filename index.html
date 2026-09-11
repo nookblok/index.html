@@ -1039,6 +1039,10 @@ footer {
         SUPPLY
       </a>
 
+      <a href="#apply">
+        APPLY WHITELIST
+      </a>
+
     </div>
 
   </div>
@@ -1078,6 +1082,10 @@ footer {
 
     <p class="hero-chain">
       BUILT ON ROBINHOOD CHAIN
+    </p>
+
+    <p style="margin-top:36px;">
+      <a class="opensea-link" href="#apply">APPLY WHITELIST →</a>
     </p>
 
   </div>
@@ -1323,6 +1331,64 @@ footer {
 
 
 <!-- =====================================================
+     APPLY WHITELIST
+===================================================== -->
+
+<section id="apply">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      APPLY WHITELIST
+    </h2>
+
+    <p class="section-text">
+      Follow, like, retweet, and comment.
+      Then submit your wallet.
+    </p>
+
+    <p class="section-text" style="margin-top:24px;">
+      <a href="https://x.com/washmachinesnft" target="_blank" rel="noopener">FOLLOW</a>
+      &nbsp;·&nbsp;
+      <a href="https://x.com/washmachinesnft/status/2098357489469452604" target="_blank" rel="noopener">LIKE · RT · COMMENT</a>
+    </p>
+
+    <div class="utility-box">
+
+      <h3>
+        WHITELIST
+      </h3>
+
+      <form id="wl-form">
+
+        <div style="margin:16px 0; position:relative; z-index:2;">
+          <label>X USERNAME</label><br>
+          <input id="twitter" required placeholder="@username"
+            style="width:100%;margin-top:8px;padding:14px;background:#050505;color:#fff;border:1px solid rgba(255,255,255,.15);">
+        </div>
+
+        <div style="margin:16px 0; position:relative; z-index:2;">
+          <label>WALLET</label><br>
+          <input id="wallet" required placeholder="Mint wallet"
+            style="width:100%;margin-top:8px;padding:14px;background:#050505;color:#fff;border:1px solid rgba(255,255,255,.15);">
+        </div>
+
+        <button class="opensea-link" type="submit" id="submit-btn">
+          SUBMIT →
+        </button>
+
+        <div id="form-msg" class="soon-message"></div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
      CLOSING
 ===================================================== -->
 
@@ -1330,86 +1396,4 @@ footer {
 
   <h2>
     YOUR WALLET<br>
-    GETS DIRTY.<br>
-    YOUR MACHINE<br>
-    WASHES IT.
-  </h2>
-
-  <p>
-    Washing Machine is built on Robinhood Chain.
-    A small collection with a simple idea:
-    clean the dust, use the machine.
-  </p>
-
-</section>
-
-
-<!-- =====================================================
-     X
-===================================================== -->
-
-<div class="social">
-
-  <a
-    href="https://x.com/washmachinesnft"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    X / @washmachinesnft
-  </a>
-
-</div>
-
-
-</main>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-  <div class="watermark">
-    2026 © WASHING MACHINE
-  </div>
-
-  <div class="disclaimer">
-    Washing Machine utility and reward mechanisms are
-    planned concepts and remain subject to final technical
-    implementation, eligibility, availability and applicable
-    requirements. Nothing on this website guarantees
-    rewards or returns.
-  </div>
-
-</footer>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
-<script>
-
-function showSoon() {
-
-  const message =
-    document.getElementById("soon-message");
-
-  if (message.style.display === "block") {
-
-    message.style.display = "none";
-
-  } else {
-
-    message.style.display = "block";
-
-  }
-
-}
-
-</script>
-
-
-</body>
-</html>
+    
